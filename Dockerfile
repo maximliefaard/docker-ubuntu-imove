@@ -35,12 +35,26 @@ RUN apt-get install -y ant default-jdk
 RUN apt-get install -y doxygen
 
 # 3. INSTALL THE PRE-BUILT OPENCV LIBRARY
-COPY OpenCV/ /OpenCV/
-RUN ls -la /OpenCV/*
-RUN cd OpenCV/build/
-#RUN cd build
+
+RUN apt-get install -y unzip wget
+RUN wget https://github.com/opencv/opencv/archive/3.4.1.zip
+RUN unzip 3.4.1.zip
+RUN rm 3.4.1.zip
+RUN mv opencv-3.4.1 OpenCV
+RUN cd OpenCV
+RUN mkdir build
+RUN cd build
+RUN cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON -DENABLE_PRECOMPILED_HEADERS=OFF ..
+RUN make -j4
 RUN make install
 RUN ldconfig
+
+#COPY OpenCV/ /OpenCV/
+#RUN ls -la /OpenCV/*
+#RUN cd OpenCV/build/
+#RUN cd build
+#RUN make install
+#RUN ldconfig
 #RUN rm -rf /OpenCV
 
 # 3.5 TA - Other dependencies:
