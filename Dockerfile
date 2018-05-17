@@ -35,8 +35,8 @@ RUN apt-get install -y ant default-jdk
 RUN apt-get install -y doxygen
 
 # 3. INSTALL THE PRE-BUILT OPENCV LIBRARY
-ADD OpenCV /OpenCV
-RUN cd /OpenCV
+ADD OpenCV /usr/local/OpenCV
+RUN cd /usr/local/OpenCV
 RUN cd build
 RUN make install
 RUN ldconfig
