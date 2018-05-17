@@ -37,8 +37,8 @@ RUN apt-get install -y doxygen
 # 3. INSTALL THE PRE-BUILT OPENCV LIBRARY
 COPY OpenCV/ /OpenCV/
 RUN ls -la /OpenCV/*
-RUN cd OpenCV
-RUN cd build
+RUN cd OpenCV/build/
+#RUN cd build
 RUN make install
 RUN ldconfig
 #RUN rm -rf /OpenCV
