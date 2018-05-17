@@ -35,7 +35,6 @@ RUN apt-get install -y ant default-jdk
 RUN apt-get install -y doxygen
 
 # 3. INSTALL THE PRE-BUILT LIBRARY
-RUN unzip compressed_OpenCV.zip
 RUN cd OpenCV
 RUN cd build
 RUN make install
