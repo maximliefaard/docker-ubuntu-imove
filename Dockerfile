@@ -34,11 +34,13 @@ RUN apt-get install -y ant default-jdk
 # Documentation:
 RUN apt-get install -y doxygen
 
-# 3. INSTALL THE PRE-BUILT LIBRARY
-RUN cd OpenCV
+# 3. INSTALL THE PRE-BUILT OPENCV LIBRARY
+ADD OpenCV /OpenCV
+RUN cd /OpenCV
 RUN cd build
 RUN make install
 RUN ldconfig
+#RUN rm -rf /OpenCV
 
 # 3.5 TA - Other dependencies:
 RUN apt-get install -y libboost-all-dev
