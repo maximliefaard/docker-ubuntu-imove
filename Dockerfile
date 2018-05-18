@@ -41,9 +41,12 @@ RUN wget https://github.com/opencv/opencv/archive/3.4.1.zip
 RUN unzip 3.4.1.zip
 RUN rm 3.4.1.zip
 RUN mv opencv-3.4.1 OpenCV
+RUN ls -la
 RUN cd OpenCV
 RUN mkdir build
+RUN ls -la
 RUN cd build
+RUN ls -la
 RUN cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON -DENABLE_PRECOMPILED_HEADERS=OFF ..
 RUN make -j4
 RUN make install
