@@ -46,10 +46,12 @@ RUN cd /OpenCV/ && ls -la
 #RUN mkdir build
 #RUN ls -la
 #RUN cd build
-RUN cd /OpenCV/ && cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON -DENABLE_PRECOMPILED_HEADERS=OFF ..
-RUN cd /OpenCV/ && make -j4
-RUN cd /OpenCV/ && make install
-RUN cd /OpenCV/ && ldconfig
+WORKDIR /OpenCV/
+RUN ls -la
+RUN cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON -DENABLE_PRECOMPILED_HEADERS=OFF ..
+RUN make -j4
+RUN make install
+RUN ldconfig
 
 #COPY OpenCV/ /OpenCV/
 #RUN ls -la /OpenCV/*
