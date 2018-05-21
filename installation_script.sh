@@ -16,7 +16,6 @@
 
 OPENCV_VERSION='3.4.1'
 
-
 # 1. KEEP UBUNTU OR DEBIAN UP TO DATE
 
 apt-get -y update
@@ -24,32 +23,31 @@ apt-get -y upgrade
 apt-get -y dist-upgrade
 apt-get -y autoremove
 
-
 # 2. INSTALL THE DEPENDENCIES
 
 # Build tools:
-apt-get install -y build-essential cmake
+apt-get install -y --no-install-recommends build-essential cmake
 
 # GUI (if you want to use GTK instead of Qt, replace 'qt5-default' with 'libgtkglext1-dev' and remove '-DWITH_QT=ON' option in CMake):
-apt-get install -y qt5-default libvtk6-dev
+apt-get install -y --no-install-recommends qt5-default libvtk6-dev
 
 # Media I/O:
-apt-get install -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-dev libjasper-dev libopenexr-dev libgdal-dev
+apt-get install -y --no-install-recommends zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-dev libjasper-dev libopenexr-dev libgdal-dev
 
 # Video I/O:
-apt-get install -y libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm libopencore-amrnb-dev libopencore-amrwb-dev libv4l-dev libxine2-dev
+apt-get install -y --no-install-recommends libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm libopencore-amrnb-dev libopencore-amrwb-dev libv4l-dev libxine2-dev
 
 # Parallelism and linear algebra libraries:
-apt-get install -y libtbb-dev libeigen3-dev
+apt-get install -y --no-install-recommends libtbb-dev libeigen3-dev
 
 # Python:
-apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
+apt-get install -y --no-install-recommends python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
 
 # Java:
-apt-get install -y ant default-jdk
+apt-get install -y --no-install-recommends ant default-jdk
 
 # Documentation:
-apt-get install -y doxygen
+apt-get install -y --no-install-recommends doxygen
 
 
 # 3. INSTALL THE LIBRARY
@@ -66,13 +64,23 @@ cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON 
 make -j4
 make install
 ldconfig
+cd ..
+cd ..
+rm -r OpenCV
+
+# 4. REMOVE OPENCV BUILD DEPENDENCIES
+
+apt-get remove -y qt5-default libvtk6-dev
+apt-get remove -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-dev libjasper-dev libopenexr-dev libgdal-dev
+apt-get remove -y libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm libopencore-amrnb-dev libopencore-amrwb-dev libv4l-dev libxine2-dev
+apt-get remove -y libtbb-dev libeigen3-dev
+apt-get remove -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
+apt-get remove -y ant default-jdk
+apt-get remove -y doxygen
+apt-get -y autoremove
 
 
-# 3.5 TA - Other dependencies:
-apt-get install -y libboost-all-dev
-apt-get install -y libsfml-dev
+# 5. INSTALL IMOVE DEPENDENCIES
 
-
-# 4. EXECUTE SOME OPENCV EXAMPLES AND COMPILE A DEMONSTRATION
-
-# To complete this step, please visit 'http://milq.github.io/install-opencv-ubuntu-debian'.
+apt-get install -y --no-install-recommends libboost-all-dev
+apt-get install -y --no-install-recommends libsfml-dev
