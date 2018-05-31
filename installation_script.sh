@@ -77,8 +77,6 @@ apt-get remove -y libtbb-dev libeigen3-dev
 apt-get remove -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
 apt-get remove -y ant default-jdk
 apt-get remove -y doxygen
-apt-get -y autoremove
-
 
 # 5. INSTALL IMOVE DEPENDENCIES
 
