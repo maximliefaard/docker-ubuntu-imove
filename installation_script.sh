@@ -82,8 +82,3 @@ apt-get remove -y doxygen
 
 apt-get install -y --no-install-recommends libboost-all-dev
 apt-get install -y --no-install-recommends libsfml-dev
-
-# 6. INSTALL STATIC ANALYSIS DEPENDENCIES
-
-apt-get install -y --no-install-recommends cppcheck
-
